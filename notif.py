@@ -7,8 +7,8 @@ directory = './notifs'
 
 
 class Notifs:
-    notifiedGames: list[str]
-    modules: list[Any]
+    notifiedGames: List[str]
+    modules: List[Any]
 
     def __init__(self) -> None:
 

@@ -1,6 +1,5 @@
 from datetime import datetime
 from discord import Webhook, RequestsWebhookAdapter, embeds
-from typing import List
 from classes import Game
 import discord
 import os

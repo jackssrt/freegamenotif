@@ -7,7 +7,7 @@ directory = './sources'
 
 
 class Sources:
-    modules: list[Any]
+    modules: List[Any]
 
     def __init__(self) -> None:
 
