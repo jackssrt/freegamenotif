@@ -25,4 +25,4 @@ def notify(game: Game):
     embed.set_thumbnail(url=game.image)
     webhook = Webhook.from_url(
         WEBHOOK_URL, adapter=RequestsWebhookAdapter())
-    webhook.send("<@&902260501633970236>", embed=embed)
+    webhook.send("@everyone", embed=embed)
