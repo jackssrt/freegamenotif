@@ -1,9 +1,9 @@
 from typing import Any, Dict, List
-from classes import Game
+from modules.classes import Game
 import importlib
 import os
 
-directory = './sources'
+directory = "./sources"
 
 
 class Sources:
@@ -19,7 +19,7 @@ class Sources:
             print(f"|   |   {filename} loaded!")
             modulename = os.path.splitext(filename)[0]
 
-            module = importlib.import_module(f'sources.{modulename}')
+            module = importlib.import_module(f"sources.{modulename}")
             self.modules[filename] = module
 
     def check(self):

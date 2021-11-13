@@ -1,5 +1,5 @@
 from typing import Any, Dict, List
-from classes import Game
+from modules.classes import Game
 import epicstore_api
 import json
 import random

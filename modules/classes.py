@@ -1,4 +1,3 @@
-import abc
 from dataclasses import dataclass
 from typing import List, Optional
 
@@ -6,8 +5,8 @@ from typing import List, Optional
 @dataclass
 class Game:
     title: str
-    desc:  str
-    link:  str
+    desc: str
+    link: str
     image: str
-    id:    str
+    id: str
     developer: Optional[str] = None
