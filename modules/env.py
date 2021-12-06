@@ -35,5 +35,13 @@ class Env:
             self._cache["FGN_DISCORD_URL"] = os.getenv("FGN_DISCORD_URL").strip()
         return self._cache["FGN_DISCORD_URL"]
 
+    @property
+    def FGN_DISCORD_LOG(self) -> Optional[str]:
+        "Logging webhook used for debugging."
+        logger.info("Getting value of env FGN_DISCORD_URL")
+        if not self._cache.get("FGN_DISCORD_LOG"):
+            self._cache["FGN_DISCORD_LOG"] = os.getenv("FGN_DISCORD_LOG").strip()
+        return self._cache["FGN_DISCORD_LOG"]
+
 
 env = Env()

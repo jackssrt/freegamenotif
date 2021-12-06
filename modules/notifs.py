@@ -1,6 +1,6 @@
 from typing import Any, Dict, List
 from modules.classes import Game
-from modules.logs import logger
+from modules.logs import discordlog, logger
 from modules.env import env
 import importlib
 import os
@@ -31,6 +31,7 @@ class Notifs:
         # Load notified.json
         if not os.path.exists("./notified.json"):
             logger.info("Notified.json doesnt exist, creating it...")
+            discordlog("Notified.json doesnt exist, creating it...")
             with open("./notified.json", "w") as f:
                 f.write("[]")
             self.notifiedGames = []
@@ -41,6 +42,7 @@ class Notifs:
             logger.info("Reading notified.json")
             with open("./notified.json") as f:
                 self.notifiedGames = json.load(f)
+            discordlog(f"notifiedGames loaded with val {self.notifiedGames}")
             logger.info("Read notified.json and loaded it")
 
     def notify(self, games: List[Game]):
@@ -53,6 +55,9 @@ class Notifs:
                 if env.FGN_FORCE or not (game.id in self.notifiedGames):
                     logger.info(
                         f"Notifing because env FGN_FORCE is {env.FGN_FORCE} and game.id in notified is {game.id in self.notifiedGames}"
+                    )
+                    discordlog(
+                        f"Notifing because env FGN_FORCE is {env.FGN_FORCE} and game.id in notified is {game.id in self.notifiedGames}\nnotified games: {self.notifiedGames}"
                     )
                     print(f"|   |   |   {game.title}")
                     self.modules[module_name].notify(game)
