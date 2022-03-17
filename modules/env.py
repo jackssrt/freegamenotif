@@ -1,6 +1,8 @@
 import os
-from typing import Any, Dict, Optional
-from dotenv import load_dotenv
+from typing import Any, Dict, Optional, cast
+
+from dotenv import load_dotenv  # type: ignore
+
 from modules.logs import logger
 
 load_dotenv()
@@ -13,7 +15,7 @@ class Env:
         "Gets a bool value from env"
         if not self._cache.get(key):
             self._cache[key] = os.getenv(key, "false").casefold().strip() == "true"
-        return self._cache.get(key)
+        return cast(bool, self._cache.get(key))
 
     @property
     def FGN_FORCE(self) -> bool:
@@ -32,7 +34,7 @@ class Env:
         "The discord webhook to send to."
         logger.info("Getting value of env FGN_DISCORD_URL")
         if not self._cache.get("FGN_DISCORD_URL"):
-            self._cache["FGN_DISCORD_URL"] = os.getenv("FGN_DISCORD_URL").strip()
+            self._cache["FGN_DISCORD_URL"] = (os.getenv("FGN_DISCORD_URL") or "").strip()
         return self._cache["FGN_DISCORD_URL"]
 
     @property
@@ -40,7 +42,7 @@ class Env:
         "Logging webhook used for debugging."
         logger.info("Getting value of env FGN_DISCORD_URL")
         if not self._cache.get("FGN_DISCORD_LOG"):
-            self._cache["FGN_DISCORD_LOG"] = os.getenv("FGN_DISCORD_LOG").strip()
+            self._cache["FGN_DISCORD_LOG"] = (os.getenv("FGN_DISCORD_LOG") or "").strip()
         return self._cache["FGN_DISCORD_LOG"]
 
 

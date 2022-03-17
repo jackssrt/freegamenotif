@@ -1,9 +1,12 @@
-from time import time
-from modules.logs import logger
 import os
+from time import time
+
+from modules.logs import logger
 
 
 class Ratelimit:
+    _lastRan: float
+
     def __init__(self) -> None:
         logger.info("initing Ratelimit")
         if not os.path.exists("./lastRan.txt"):

@@ -1,22 +1,22 @@
-from typing import Any, Dict, List
-from modules.classes import Game
-import epicstore_api
 import json
 import random
+from typing import Any, Dict, List, Optional
+
+import epicstore_api  # type: ignore
+from modules.classes import Game
+
 api = epicstore_api.EpicGamesStoreAPI()
 
 
-def findDev(game: Dict[str, Any]) -> str:
+def findDev(game: Dict[str, Any]) -> Optional[str]:
     for x in game["customAttributes"]:
         if x["key"] == "developerName":
             return x["value"]
+    return None
 
 
 def makeUrl(game: Dict[str, Any]) -> str:
-    for x in game["catalogNs"]["mappings"]:
-        if x["pageType"] == "productHome":
-            return f"https://www.epicgames.com/store/en-US/p/{x['pageSlug']}"
-    return f"https://www.epicgames.com/store/en-US/p/{game['urlSlug']}"
+    return f"https://www.epicgames.com/store/en-US/p/{game['productSlug']}"
 
 
 def findThumbnail(game: Dict[str, Any]) -> str:
@@ -33,9 +33,17 @@ def check() -> List[Game]:
     games: List[Game] = []
     for game in free_games["data"]["Catalog"]["searchStore"]["elements"]:
         price = game["price"]["totalPrice"]
-        if price["discount"] != 0 and price["discountPrice"] == 0 and game["status"] == "ACTIVE":
-            dev, url, image = (findDev(game), makeUrl(game),
-                               findThumbnail(game),)
-            games.append(Game(game["title"], game["description"],
-                              url, image, game["id"], dev))
+        if (
+            price["discount"] != 0
+            and price["discountPrice"] == 0
+            and game["status"] == "ACTIVE"
+        ):
+            dev, url, image = (
+                findDev(game),
+                makeUrl(game),
+                findThumbnail(game),
+            )
+            games.append(
+                Game(game["title"], game["description"], url, image, game["id"], dev)
+            )
     return games

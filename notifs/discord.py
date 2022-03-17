@@ -1,9 +1,10 @@
 from datetime import datetime
-from discord import Webhook, RequestsWebhookAdapter, embeds
+
 from modules.classes import Game
 from modules.env import env
+
 import discord
-import os
+from discord.webhook import RequestsWebhookAdapter, Webhook  # type: ignore
 
 
 def notify(game: Game):
@@ -11,14 +12,14 @@ def notify(game: Game):
         print("|   |   |   Wont run because env FGN_DISCORD_URL isnt set")
         return
 
-    embed = discord.embeds.Embed()
+    embed = discord.embeds.Embed()  # type:ignore
     embed.title = game.title
     embed.description = game.desc
     embed.set_author(
         name=game.developer if game.developer else "[FGN] Unknown Developer"
     )
     embed.url = game.link
-    embed.color = discord.Color.from_rgb(255, 255, 0)
+    embed.color = discord.colour.Color.from_rgb(255, 255, 0)  # type:ignore
     embed.set_footer(text=f"freegamenotif • ID: {game.id}")
     embed.timestamp = datetime.utcnow()
     embed.set_thumbnail(url=game.image)

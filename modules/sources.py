@@ -7,11 +7,11 @@ directory = "./sources"
 
 
 class Sources:
-    modules: List[Any]
+    modules: Dict[str,Any]
 
     def __init__(self) -> None:
 
-        self.modules: Dict[str, Any] = {}
+        self.modules = {}
         for filename in os.listdir(directory):
             filepath = os.path.join(directory, filename)
             if not os.path.isfile(filepath):
