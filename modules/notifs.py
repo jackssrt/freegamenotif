@@ -1,10 +1,11 @@
-from typing import Any, Dict, List
-from modules.classes import Game
-from modules.logs import discordlog, logger
-from modules.env import env
 import importlib
-import os
 import json
+import os
+from typing import Any, Dict, List
+
+from modules.classes import Game
+from modules.env import env
+from modules.logs import discordlog, logger
 
 directory = "./notifs"
 

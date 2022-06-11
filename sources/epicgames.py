@@ -33,11 +33,7 @@ def check() -> List[Game]:
     games: List[Game] = []
     for game in free_games["data"]["Catalog"]["searchStore"]["elements"]:
         price = game["price"]["totalPrice"]
-        if (
-            price["discount"] != 0
-            and price["discountPrice"] == 0
-            and game["status"] == "ACTIVE"
-        ):
+        if price["discountPrice"] == 0 and game["status"] == "ACTIVE":
             dev, url, image = (
                 findDev(game),
                 makeUrl(game),
