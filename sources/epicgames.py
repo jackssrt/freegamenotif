@@ -23,7 +23,7 @@ def findThumbnail(game: Dict[str, Any]) -> str:
     for x in game["keyImages"]:
         if x["type"] == "Thumbnail":
             return x["url"]
-    return random.choice(game["keyImages"])
+    return random.choice(game["keyImages"])["url"]
 
 
 def check() -> List[Game]:
