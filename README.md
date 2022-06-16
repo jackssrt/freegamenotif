@@ -10,7 +10,7 @@ And notifs:
 
 - Discord webhook
 
-see it work in <https://discord.gg/kNyh9RPm5n>
+originally made for my discord server <https://discord.gg/kNyh9RPm5n>, we now use <https://freestuffbot.xyz> in that server.
 
 ## env
 
